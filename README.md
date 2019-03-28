@@ -10,6 +10,7 @@ sudo docker network create -d bridge otrs-net
 sudo docker run -d --name otrs-db \
   -v otrs-db:/var/lib/mysql \
   --net otrs-net \
+  -p 9001:3306 \
   -e MYSQL_ROOT_PASSWORD=suP3rp244w0rds91r00t \
   -e MYSQL_DATABASE=otrs \
   -e MYSQL_USER=otrs \
