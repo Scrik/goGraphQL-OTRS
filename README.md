@@ -3,7 +3,7 @@
 - OTRS-5
 - MySQL
 
-## TODO: окружение
+### Окружение
 ```
 sudo docker network create -d bridge otrs-net
   
