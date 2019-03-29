@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/goGraphQL-OTRS/internal/gen/gql"
 	"github.com/goGraphQL-OTRS/internal/gen/resolve"
 	"github.com/goGraphQL-OTRS/internal/gen/structs"
 )
@@ -53,7 +54,7 @@ import "time"
 package api
 	`)
 	resolve.GenResolve(n, res, r)
-	// rd = bytes.NewReader(fields)
-	// r = bufio.NewReader(rd)
-	// gql.GenType(n, res, r)
+	rd = bytes.NewReader(fields)
+	r = bufio.NewReader(rd)
+	gql.GenType(n, res, r)
 }

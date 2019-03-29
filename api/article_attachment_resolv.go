@@ -65,3 +65,21 @@ func (R *ResolverArticleAttachment) ChangeTime() *string {
 func (R ResolverArticleAttachment) ChangeBy() *int32 {
 	return R.s.ChangeBy
 }
+
+func GenGqlTypeArticleAttachment(extra string) string {
+	return "type ArticleAttachment { " + extra + `
+	Id: String,
+	ArticleId: String,
+	Filename: String,
+	ContentSize: String,
+	ContentType: String,
+	ContentId: String,
+	ContentAlternative: String,
+	Disposition: String,
+	Content: String,
+	CreateTime: String,
+	CreateBy: Int,
+	ChangeTime: String,
+	ChangeBy: Int,
+	}`
+}

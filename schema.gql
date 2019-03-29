@@ -7,6 +7,7 @@ type Query {
     tiket(ID: String!): Tiket!
 	article(ID: String!): Article!
 	articleAttachment(ID: String!): ArticleAttachment!
+	customerCompany(ID: String!): CustomerCompany!
 }
 
 type Tiket {
@@ -35,6 +36,7 @@ type Tiket {
 	CreateBy: Int,
 	ChangeBy: Int,
 	Articles: [Article],
+	Company: CustomerCompany,
 }
 
 type Article {
@@ -78,3 +80,19 @@ type ArticleAttachment {
 	ChangeTime: String,
 	ChangeBy: Int,
 }
+
+type CustomerCompany {
+	CustomerId: String!,
+	Name: String,
+	Street: String,
+	Zip: String,
+	City: String,
+	Country: String,
+	Url: String,
+	Comments: String,
+	ValidId: Int,
+	CreateTime: String,
+	CreateBy: Int,
+	ChangeTime: String,
+	ChangeBy: Int,
+	}

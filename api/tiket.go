@@ -24,3 +24,16 @@ func (R *ResolverTicket) Articles() (res *[]*ResolverArticle, err error) {
 	res = &result
 	return
 }
+
+// Articles Articles
+func (R *ResolverTicket) Company() (result *ResolverCustomerCompany, err error) {
+	result = &ResolverCustomerCompany{}
+	S := TypeCustomerCompany{}
+	row := db.DB.QueryRowx("select * from `otrs`.`customer_company` where `customer_id`=?", R.s.CustomerId)
+	err = row.StructScan(&S)
+	if err != nil {
+		return
+	}
+	result.Set(S)
+	return
+}

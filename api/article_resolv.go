@@ -103,3 +103,30 @@ func (R *ResolverArticle) ChangeTime() *string {
 func (R ResolverArticle) ChangeBy() *int32 {
 	return R.s.ChangeBy
 }
+
+func GenGqlTypeArticle(extra string) string {
+	return "type Article { " + extra + `
+	Id: String,
+	TicketId: String,
+	ArticleTypeId: Int,
+	ArticleSenderTypeId: Int,
+	AFrom: String,
+	AReplyTo: String,
+	ATo: String,
+	ACc: String,
+	ASubject: String,
+	AMessageId: String,
+	AMessageIdMd5: String,
+	AInReplyTo: String,
+	AReferences: String,
+	AContentType: String,
+	ABody: String,
+	IncomingTime: Int,
+	ContentPath: String,
+	ValidId: Int,
+	CreateTime: String,
+	CreateBy: Int,
+	ChangeTime: String,
+	ChangeBy: Int,
+	}`
+}

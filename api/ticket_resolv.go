@@ -121,3 +121,34 @@ func (R *ResolverTicket) ChangeTime() *string {
 func (R ResolverTicket) ChangeBy() *int32 {
 	return R.s.ChangeBy
 }
+
+func GenGqlTypeTicket(extra string) string {
+	return "type Ticket { " + extra + `
+	Id: String,
+	Tn: String,
+	Title: String,
+	QueueId: Int,
+	TicketLockId: Int,
+	TypeId: Int,
+	ServiceId: Int,
+	SlaId: Int,
+	UserId: Int,
+	ResponsibleUserId: Int,
+	TicketPriorityId: Int,
+	TicketStateId: Int,
+	CustomerId: String,
+	CustomerUserId: String,
+	Timeout: Int,
+	UntilTime: Int,
+	EscalationTime: Int,
+	EscalationUpdateTime: Int,
+	EscalationResponseTime: Int,
+	EscalationSolutionTime: Int,
+	ArchiveFlag: Int,
+	CreateTimeUnix: String,
+	CreateTime: String,
+	CreateBy: Int,
+	ChangeTime: String,
+	ChangeBy: Int,
+	}`
+}

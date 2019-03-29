@@ -22,7 +22,12 @@ func (Q *Query) Article(args struct{ ID string }) (result *api.ResolverArticle, 
 	return api.OneArticle(args.ID)
 }
 
-// // ArticleAttachment Attachment
+// ArticleAttachment Attachment
 func (Q *Query) ArticleAttachment(args struct{ ID string }) (result *api.ResolverArticleAttachment, err error) {
 	return api.OneAttachment(args.ID)
+}
+
+// CustomerCompany Customer Company
+func (Q *Query) CustomerCompany(args struct{ ID string }) (result *api.ResolverCustomerCompany, err error) {
+	return api.OneCustomerCompany(args.ID)
 }

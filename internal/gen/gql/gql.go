@@ -42,33 +42,33 @@ func GenTyp(res io.Writer, name string, typ string) {
 // ParseType ParseType
 func ParseType(t string) string {
 	if strings.HasPrefix(t, "varchar") {
-		return "String!"
+		return "String"
 	}
 	if strings.HasPrefix(t, "text") {
-		return "String!"
+		return "String"
 	}
 	if strings.HasPrefix(t, "longblob") {
-		return "String!"
+		return "String"
 	}
 
 	if strings.HasPrefix(t, "mediumtext") {
-		return "String!"
+		return "String"
 	}
 	if strings.HasPrefix(t, "int") {
-		return "Int!"
+		return "Int"
 	}
 
 	if strings.HasPrefix(t, "bigint") {
-		return "String!"
+		return "String"
 	}
 
 	if strings.HasPrefix(t, "smallint") {
-		return "Int!"
+		return "Int"
 	}
 
 	switch t {
 	case "datetime":
-		return "String!"
+		return "String"
 	default:
 		return t
 	}

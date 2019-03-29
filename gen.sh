@@ -11,6 +11,7 @@ function generate(){
 generate ticket
 generate article
 generate article_attachment
+generate customer_company
 
 (
     cd api/
