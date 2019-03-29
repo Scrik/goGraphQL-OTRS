@@ -1,0 +1,5 @@
+host: localhost
+port: 3000
+client_url: /cli
+graphiql_url: /graphql
+schema: schema.gql

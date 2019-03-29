@@ -1,0 +1,80 @@
+schema {
+    query: Query
+}
+
+type Query {
+	hello: String!
+    tiket(ID: String!): Tiket!
+    article(ID: String!): Article!
+    articleAttachment(ID: String!): ArticleAttachment!
+}
+
+type Tiket {
+    Id: String!,
+	Tn: String!,
+	Title: String!,
+	QueueId: Int!,
+	TicketLockId: Int!,
+	TypeId: Int,
+	ServiceId: Int,
+	SlaId: Int,
+	UserId: Int!,
+	ResponsibleUserId: Int!,
+	TicketPriorityId: Int!,
+	TicketStateId: Int!,
+	CustomerId: String,
+	CustomerUserId: String,
+	Timeout: Int!,
+	UntilTime: Int!,
+	EscalationTime: Int!,
+	EscalationUpdateTime: Int!,
+	EscalationResponseTime: Int!,
+	EscalationSolutionTime: Int!,
+	ArchiveFlag: Int!,
+	CreateTimeUnix: String!,
+	CreateBy: Int!,
+	ChangeBy: Int!,
+    Articles: [Article],
+}
+
+type Article {
+	Id: String!,
+	TicketId: String!,
+	ArticleTypeId: Int!,
+	ArticleSenderTypeId: Int!,
+	AFrom: String!,
+	AReplyTo: String,
+	ATo: String!,
+	ACc: String,
+	ASubject: String!,
+	AMessageId: String!,
+	AMessageIdMd5: String,
+	AInReplyTo: String,
+	AReferences: String,
+	AContentType: String,
+	ABody: String!,
+	IncomingTime: Int!,
+	ContentPath: String!,
+	ValidId: Int!,
+	CreateTime: String!,
+	CreateBy: Int!,
+	ChangeTime: String!,
+	ChangeBy: Int!,
+    Attachments: [ArticleAttachment],
+}
+
+type ArticleAttachment {
+	Id: String!,
+	ArticleId: String!,
+	Filename: String!,
+	ContentSize: String!,
+	ContentType: String!,
+	ContentId: String,
+	ContentAlternative: String,
+	Disposition: String!,
+	Content: String!,
+	CreateTime: String!,
+	CreateBy: Int!,
+	ChangeTime: String!,
+	ChangeBy: Int!,
+}

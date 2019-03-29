@@ -1,37 +1,56 @@
-package api
+package tiket
 
 import (
 	"fmt"
+	"strings"
 	"time"
+
+	"github.com/goGraphQL-OTRS/api/tiket"
+	"github.com/goGraphQL-OTRS/api/types"
+	"github.com/goGraphQL-OTRS/internal/db"
 )
 
 type TypeTiket struct {
-	Id                     int64     `json:"id"`
-	Tn                     string    `json:"tn"`
-	Title                  string    `json:"title"`
-	QueueId                int32     `json:"queue_id"`
-	TicketLockId           int8      `json:"ticket_lock_id"`
-	TypeId                 int8      `json:"type_id"`
-	ServiceId              int32     `json:"service_id"`
-	SlaId                  int32     `json:"sla_id"`
-	UserId                 int32     `json:"user_id"`
-	ResponsibleUserId      int32     `json:"responsible_user_id"`
-	TicketPriorityId       int8      `json:"ticket_priority_id"`
-	TicketStateId          int8      `json:"ticket_state_id"`
-	CustomerId             string    `json:"customer_id"`
-	CustomerUserId         string    `json:"customer_user_id"`
-	Timeout                int32     `json:"timeout"`
-	UntilTime              int32     `json:"until_time"`
-	EscalationTime         int32     `json:"escalation_time"`
-	EscalationUpdateTime   int32     `json:"escalation_update_time"`
-	EscalationResponseTime int32     `json:"escalation_response_time"`
-	EscalationSolutionTime int32     `json:"escalation_solution_time"`
-	ArchiveFlag            int8      `json:"archive_flag"`
-	CreateTimeUnix         int64     `json:"create_time_unix"`
-	CreateTime             time.Time `json:"create_time"`
-	CreateBy               int32     `json:"create_by"`
-	ChangeTime             time.Time `json:"change_time"`
-	ChangeBy               int32     `json:"change_by"`
+	Id                     int64     `db:"id"`
+	Tn                     string    `db:"tn"`
+	Title                  string    `db:"title"`
+	QueueId                int32     `db:"queue_id"`
+	TicketLockId           int8      `db:"ticket_lock_id"`
+	TypeId                 *int8     `db:"type_id"`
+	ServiceId              *int32    `db:"service_id"`
+	SlaId                  *int32    `db:"sla_id"`
+	UserId                 int32     `db:"user_id"`
+	ResponsibleUserId      int32     `db:"responsible_user_id"`
+	TicketPriorityId       int8      `db:"ticket_priority_id"`
+	TicketStateId          int8      `db:"ticket_state_id"`
+	CustomerId             *string   `db:"customer_id"`
+	CustomerUserId         *string   `db:"customer_user_id"`
+	Timeout                int32     `db:"timeout"`
+	UntilTime              int32     `db:"until_time"`
+	EscalationTime         int32     `db:"escalation_time"`
+	EscalationUpdateTime   int32     `db:"escalation_update_time"`
+	EscalationResponseTime int32     `db:"escalation_response_time"`
+	EscalationSolutionTime int32     `db:"escalation_solution_time"`
+	ArchiveFlag            int8      `db:"archive_flag"`
+	CreateTimeUnix         int64     `db:"create_time_unix"`
+	CreateBy               int32     `db:"create_by"`
+	ChangeBy               int32     `db:"change_by"`
+	CreateTime             time.Time `db:"create_time"`
+}
+
+func One(ID string) (result *tiket.Resolver, err error) {
+	result = &tiket.Resolver{}
+	fields := strings.Join([]string{
+		"id", "tn", "title", "queue_id", "ticket_lock_id", "type_id", "service_id", "sla_id", "user_id", "responsible_user_id", "ticket_priority_id", "ticket_state_id", "customer_id", "customer_user_id", "timeout", "until_time", "escalation_time", "escalation_update_time", "escalation_response_time", "escalation_solution_time", "archive_flag", "create_time_unix", "create_by", "change_by",
+	}, ", ")
+	Tiket := types.TypeTiket{}
+	row := db.DB.QueryRowx("select "+fields+" from `otrs`.`ticket` where id=?", args.ID)
+	err = row.StructScan(&Tiket)
+	if err != nil {
+		return nil, err
+	}
+	result.Set(Tiket)
+	return
 }
 
 type Resolver struct {
@@ -62,15 +81,16 @@ func (R *Resolver) TicketLockId() int32 {
 	return int32(R.s.TicketLockId)
 }
 
-func (R *Resolver) TypeId() int32 {
-	return int32(R.s.TypeId)
+func (R *Resolver) TypeId() *int32 {
+	i := int32(*R.s.TypeId)
+	return &i
 }
 
-func (R *Resolver) ServiceId() int32 {
+func (R *Resolver) ServiceId() *int32 {
 	return R.s.ServiceId
 }
 
-func (R *Resolver) SlaId() int32 {
+func (R *Resolver) SlaId() *int32 {
 	return R.s.SlaId
 }
 
@@ -90,11 +110,11 @@ func (R *Resolver) TicketStateId() int32 {
 	return int32(R.s.TicketStateId)
 }
 
-func (R *Resolver) CustomerId() string {
+func (R *Resolver) CustomerId() *string {
 	return R.s.CustomerId
 }
 
-func (R *Resolver) CustomerUserId() string {
+func (R *Resolver) CustomerUserId() *string {
 	return R.s.CustomerUserId
 }
 
@@ -130,17 +150,15 @@ func (R *Resolver) CreateTimeUnix() string {
 	return fmt.Sprintf("%d", R.s.CreateTimeUnix)
 }
 
-func (R *Resolver) CreateTime() string {
-	return R.s.CreateTime.String()
-}
-
 func (R *Resolver) CreateBy() int32 {
 	return R.s.CreateBy
 }
 
-func (R *Resolver) ChangeTime() string {
-	return R.s.ChangeTime.String()
-}
+// func (R *Resolver) ChangeTime() *string {
+// 	// return R.s.ChangeTime.String()
+// 	s := "test"
+// 	return &s
+// }
 
 func (R *Resolver) ChangeBy() int32 {
 	return R.s.ChangeBy

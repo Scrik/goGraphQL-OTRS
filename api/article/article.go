@@ -1,33 +1,50 @@
-package api
+package article
 
 import (
 	"fmt"
 	"time"
+
+	"github.com/goGraphQL-OTRS/api/article"
+	"github.com/goGraphQL-OTRS/api/types"
+	"github.com/goGraphQL-OTRS/internal/db"
 )
 
 type TypeArticle struct {
-	Id                  int64     `json:"id"`
-	TicketId            int64     `json:"ticket_id"`
-	ArticleTypeId       int8      `json:"article_type_id"`
-	ArticleSenderTypeId int8      `json:"article_sender_type_id"`
-	AFrom               string    `json:"a_from"`
-	AReplyTo            string    `json:"a_reply_to"`
-	ATo                 string    `json:"a_to"`
-	ACc                 string    `json:"a_cc"`
-	ASubject            string    `json:"a_subject"`
-	AMessageId          string    `json:"a_message_id"`
-	AMessageIdMd5       string    `json:"a_message_id_md5"`
-	AInReplyTo          string    `json:"a_in_reply_to"`
-	AReferences         string    `json:"a_references"`
-	AContentType        string    `json:"a_content_type"`
-	ABody               string    `json:"a_body"`
-	IncomingTime        int32     `json:"incoming_time"`
-	ContentPath         string    `json:"content_path"`
-	ValidId             int8      `json:"valid_id"`
-	CreateTime          time.Time `json:"create_time"`
-	CreateBy            int32     `json:"create_by"`
-	ChangeTime          time.Time `json:"change_time"`
-	ChangeBy            int32     `json:"change_by"`
+	Id                  int64     `db:"id"`
+	TicketId            int64     `db:"ticket_id"`
+	ArticleTypeId       int8      `db:"article_type_id"`
+	ArticleSenderTypeId int8      `db:"article_sender_type_id"`
+	AFrom               string    `db:"a_from"`
+	AReplyTo            *string   `db:"a_reply_to"`
+	ATo                 string    `db:"a_to"`
+	ACc                 *string   `db:"a_cc"`
+	ASubject            string    `db:"a_subject"`
+	AMessageId          string    `db:"a_message_id"`
+	AMessageIdMd5       *string   `db:"a_message_id_md5"`
+	AInReplyTo          *string   `db:"a_in_reply_to"`
+	AReferences         *string   `db:"a_references"`
+	AContentType        *string   `db:"a_content_type"`
+	ABody               string    `db:"a_body"`
+	IncomingTime        int32     `db:"incoming_time"`
+	ContentPath         string    `db:"content_path"`
+	ValidId             int8      `db:"valid_id"`
+	CreateTime          time.Time `db:"create_time"`
+	CreateBy            int32     `db:"create_by"`
+	ChangeTime          time.Time `db:"change_time"`
+	ChangeBy            int32     `db:"change_by"`
+}
+
+// Article Article
+func One(ID string) (result *article.Resolver, err error) {
+	result = &article.Resolver{}
+	Article := types.TypeArticle{}
+	row := db.DB.QueryRowx("select * from `otrs`.`article` where id=?", args.ID)
+	err = row.StructScan(&Article)
+	if err != nil {
+		return nil, err
+	}
+	result.Set(Article)
+	return
 }
 
 type Resolver struct {
@@ -58,7 +75,7 @@ func (R *Resolver) AFrom() string {
 	return R.s.AFrom
 }
 
-func (R *Resolver) AReplyTo() string {
+func (R *Resolver) AReplyTo() *string {
 	return R.s.AReplyTo
 }
 
@@ -66,7 +83,7 @@ func (R *Resolver) ATo() string {
 	return R.s.ATo
 }
 
-func (R *Resolver) ACc() string {
+func (R *Resolver) ACc() *string {
 	return R.s.ACc
 }
 
@@ -78,19 +95,19 @@ func (R *Resolver) AMessageId() string {
 	return R.s.AMessageId
 }
 
-func (R *Resolver) AMessageIdMd5() string {
+func (R *Resolver) AMessageIdMd5() *string {
 	return R.s.AMessageIdMd5
 }
 
-func (R *Resolver) AInReplyTo() string {
+func (R *Resolver) AInReplyTo() *string {
 	return R.s.AInReplyTo
 }
 
-func (R *Resolver) AReferences() string {
+func (R *Resolver) AReferences() *string {
 	return R.s.AReferences
 }
 
-func (R *Resolver) AContentType() string {
+func (R *Resolver) AContentType() *string {
 	return R.s.AContentType
 }
 

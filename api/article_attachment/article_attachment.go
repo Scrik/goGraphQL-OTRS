@@ -1,24 +1,41 @@
-package api
+package article_attachment
 
 import (
 	"fmt"
 	"time"
+
+	"github.com/goGraphQL-OTRS/api/article_attachment"
+	"github.com/goGraphQL-OTRS/api/types"
+	"github.com/goGraphQL-OTRS/internal/db"
 )
 
 type TypeArticleAttachment struct {
-	Id                 int64     `json:"id"`
-	ArticleId          int64     `json:"article_id"`
-	Filename           string    `json:"filename"`
-	ContentSize        string    `json:"content_size"`
-	ContentType        string    `json:"content_type"`
-	ContentId          string    `json:"content_id"`
-	ContentAlternative string    `json:"content_alternative"`
-	Disposition        string    `json:"disposition"`
-	Content            []byte    `json:"content"`
-	CreateTime         time.Time `json:"create_time"`
-	CreateBy           int32     `json:"create_by"`
-	ChangeTime         time.Time `json:"change_time"`
-	ChangeBy           int32     `json:"change_by"`
+	Id                 int64     `db:"id"`
+	ArticleId          int64     `db:"article_id"`
+	Filename           string    `db:"filename"`
+	ContentSize        string    `db:"content_size"`
+	ContentType        string    `db:"content_type"`
+	ContentId          *string   `db:"content_id"`
+	ContentAlternative *string   `db:"content_alternative"`
+	Disposition        string    `db:"disposition"`
+	Content            []byte    `db:"content"`
+	CreateTime         time.Time `db:"create_time"`
+	CreateBy           int32     `db:"create_by"`
+	ChangeTime         time.Time `db:"change_time"`
+	ChangeBy           int32     `db:"change_by"`
+}
+
+// Article Article
+func One(ID string) (result *article_attachment.Resolver, err error) {
+	result = &article_attachment.Resolver{}
+	ArticleAttachment := types.TypeArticleAttachment{}
+	row := db.DB.QueryRowx("select * from `otrs`.`article_attachment` where id=?", args.ID)
+	err = row.StructScan(&ArticleAttachment)
+	if err != nil {
+		return nil, err
+	}
+	result.Set(ArticleAttachment)
+	return
 }
 
 type Resolver struct {
@@ -49,11 +66,11 @@ func (R *Resolver) ContentType() string {
 	return R.s.ContentType
 }
 
-func (R *Resolver) ContentId() string {
+func (R *Resolver) ContentId() *string {
 	return R.s.ContentId
 }
 
-func (R *Resolver) ContentAlternative() string {
+func (R *Resolver) ContentAlternative() *string {
 	return R.s.ContentAlternative
 }
 

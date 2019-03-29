@@ -60,7 +60,7 @@ func ParseType(t string) string {
 
 // TplField TplField
 func TplField(buf io.Writer, name string, json string, t string) (int, error) {
-	j := "`" + fmt.Sprintf(`json:"%s"`, json) + "`"
+	j := "`" + fmt.Sprintf(`db:"%s"`, json) + "`"
 	return fmt.Fprintf(buf, `%s %s %s
 	`, name, t, j)
 }

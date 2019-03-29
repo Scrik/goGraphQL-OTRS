@@ -34,9 +34,9 @@ func main() {
 	n := structs.KebabToCamelCase(Name)
 
 	fmt.Fprintf(res, `
-package api
+package %s
 
-	`)
+	`, Name)
 	structs.GenStruct(n, res, r)
 	rd = bytes.NewReader(fields)
 	r = bufio.NewReader(rd)

@@ -9,5 +9,5 @@ function generate(){
 }
 
 generate tiket
-generate article
-generate article_attachment
+# generate article
+# generate article_attachment
