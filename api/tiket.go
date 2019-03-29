@@ -1,20 +1,19 @@
-package tiket
+package api
 
 import (
-	"github.com/goGraphQL-OTRS/api/article"
 	"github.com/goGraphQL-OTRS/internal/db"
 )
 
 // Articles Articles
-func (R *Resolver) Articles() (res *[]*article.Resolver, err error) {
+func (R *ResolverTicket) Articles() (res *[]*ResolverArticle, err error) {
 	rows, err := db.DB.Queryx("select * from `otrs`.`article` where `ticket_id`=?", R.s.Id)
 	if err != nil {
 		return
 	}
-	result := []*article.Resolver{}
+	result := []*ResolverArticle{}
 	for rows.Next() {
-		r := &article.Resolver{}
-		a := article.TypeArticle{}
+		r := &ResolverArticle{}
+		a := TypeArticle{}
 		err = rows.StructScan(&a)
 		if err != nil {
 			return

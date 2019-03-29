@@ -11,7 +11,7 @@ import (
 func GenStruct(name string, res io.Writer, r *bufio.Reader) {
 	fmt.Fprintf(res, `type Type%s struct {
 	`, name)
-
+	prefix := ""
 	for {
 		line, err := r.ReadString('\n')
 		if err != nil {
@@ -24,7 +24,8 @@ func GenStruct(name string, res io.Writer, r *bufio.Reader) {
 		}
 		json := Clean(ar[0])
 		typ := ParseType(Clean(ar[1]))
-		TplField(res, name, json, typ)
+		TplField(res, name, json, prefix+typ)
+		prefix = "*"
 	}
 	fmt.Fprint(res, `}
 	`)

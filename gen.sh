@@ -4,10 +4,15 @@ function generate(){
     (
         cd api/$1;
         go run  ../../internal/gen/main.go -csv $1.csv
-        gofmt -w $1.go
+        gofmt -w *.go
     )
 }
 
-generate tiket
-# generate article
-# generate article_attachment
+generate ticket
+generate article
+generate article_attachment
+
+(
+    cd api/
+    gofmt -w *.go
+)

@@ -10,16 +10,17 @@ import (
 )
 
 // GenResolve GenResolve
-func GenResolve(name string, res io.Writer, reader *bufio.Reader) {
+func GenResolve(Name string, res io.Writer, reader *bufio.Reader) {
 	fmt.Fprintf(res, `
-type Resolver struct {
+type Resolver%s struct {
 	s Type%s
 }
-func (R *Resolver) Set(s Type%s) {
+func (R *Resolver%s) Set(s Type%s) {
 	R.s = s
 }
-	`, name, name)
+	`, Name, Name, Name, Name)
 
+	prefix := ""
 	for {
 		line, err := reader.ReadString('\n')
 		if err != nil {
@@ -31,45 +32,68 @@ func (R *Resolver) Set(s Type%s) {
 			continue
 		}
 		typ := structs.ParseType(structs.Clean(ar[1]))
-		GenFunc(res, name, typ)
+		GenFunc(res, Name, name, prefix+typ)
+		prefix = "*"
 	}
 }
 
 // GenFunc GenFunc
-func GenFunc(r io.Writer, name string, typ string) (int, error) {
-	if typ == "[]byte" {
+func GenFunc(r io.Writer, Title string, name string, typ string) (int, error) {
+	if name == "Id" {
 		return fmt.Fprintf(r, `
-func (R *Resolver) %s() string {
-	return string(R.s.%s)
+func (R Resolver%s) %s() string {
+	return fmt.Sprintf("%s", R.s.%s)
 }
-	`, name, name)
-	}
-	if typ == "time.Time" {
-		return fmt.Fprintf(r, `
-func (R *Resolver) %s() string {
-	return R.s.%s.String()
-}
-	`, name, name)
+	`, Title, name, "%d", name)
 	}
 
-	if typ == "int8" {
+	if typ == "*[]byte" {
 		return fmt.Fprintf(r, `
-func (R *Resolver) %s() int32 {
-	return int32(R.s.%s)
+func (R *Resolver%s) %s() *string {
+	str:= string(*R.s.%s)
+	return &str
 }
-	`, name, name)
+	`, Title, name, name)
+	}
+	if typ == "*time.Time" {
+		return fmt.Fprintf(r, `
+func (R *Resolver%s) %s() *string {
+	str:=R.s.%s.String()
+	return &str
+}
+	`, Title, name, name)
+	}
+
+	if typ == "*int8" {
+		return fmt.Fprintf(r, `
+func (R Resolver%s) %s() *int32 {
+	i := int32(*R.s.%s)
+	return &i
+}
+	`, Title, name, name)
+	}
+
+	if typ == "*int64" {
+		return fmt.Fprintf(r, `
+func (R *Resolver%s) %s() *string {
+	str := fmt.Sprintf("%s", R.s.%s)
+	return &str
+}
+	`, Title, name, "%d", name)
 	}
 
 	if typ == "int64" {
 		return fmt.Fprintf(r, `
-func (R *Resolver) %s() string {
-	return fmt.Sprintf("%s", R.s.%s)
+func (R Resolver%s) %s() string {
+	str:= fmt.Sprintf("%s", R.s.%s)
+	return &str
 }
-	`, name, "%d", name)
+	`, Title, name, "%d", name)
 	}
+
 	return fmt.Fprintf(r, `
-func (R *Resolver) %s() %s {
+func (R Resolver%s) %s() %s {
 	return R.s.%s
 }
-	`, name, typ, name)
+	`, Title, name, typ, name)
 }
