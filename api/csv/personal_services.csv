@@ -1,0 +1,3 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"user_id";"int(11)";"NO";"MUL";;""
+"service_id";"int(11)";"NO";"MUL";;""

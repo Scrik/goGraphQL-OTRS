@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"article_id";"bigint(20)";"NO";"MUL";;""
+"article_key";"varchar(50)";"NO";"";;""
+"article_value";"varchar(50)";"YES";"";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"MUL";;""

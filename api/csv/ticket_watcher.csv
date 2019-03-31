@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"ticket_id";"bigint(20)";"NO";"MUL";;""
+"user_id";"int(11)";"NO";"MUL";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"MUL";;""
+"change_time";"datetime";"NO";"";;""
+"change_by";"int(11)";"NO";"MUL";;""

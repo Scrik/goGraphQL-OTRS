@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"process_name";"varchar(200)";"NO";"";;""
+"process_id";"varchar(200)";"NO";"";;""
+"process_host";"varchar(200)";"NO";"";;""
+"process_create";"int(11)";"NO";"";;""
+"process_change";"int(11)";"NO";"";;""

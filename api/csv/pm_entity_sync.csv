@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"entity_type";"varchar(30)";"NO";"PRI";;""
+"entity_id";"varchar(50)";"NO";"PRI";;""
+"sync_state";"varchar(30)";"NO";"";;""
+"create_time";"datetime";"NO";"";;""
+"change_time";"datetime";"NO";"";;""

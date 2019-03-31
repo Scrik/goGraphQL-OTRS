@@ -1,0 +1,8 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"ticket_id";"bigint(20)";"NO";"MUL";;""
+"queue_id";"int(11)";"NO";"MUL";;""
+"queue";"varchar(200)";"NO";"";;""
+"group_id";"int(11)";"NO";"MUL";;""
+"s_lock";"varchar(200)";"NO";"";;""
+"s_state";"varchar(200)";"NO";"";;""
+"create_time_unix";"bigint(20)";"NO";"";;""

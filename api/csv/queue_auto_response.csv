@@ -1,0 +1,8 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"int(11)";"NO";"PRI";;"auto_increment"
+"queue_id";"int(11)";"NO";"MUL";;""
+"auto_response_id";"int(11)";"NO";"MUL";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"MUL";;""
+"change_time";"datetime";"NO";"";;""
+"change_by";"int(11)";"NO";"MUL";;""

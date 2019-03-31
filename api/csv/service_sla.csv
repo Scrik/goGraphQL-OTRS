@@ -1,0 +1,3 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"service_id";"int(11)";"NO";"PRI";;""
+"sla_id";"int(11)";"NO";"PRI";;""

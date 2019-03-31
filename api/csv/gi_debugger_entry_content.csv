@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"bigint(20)";"NO";"PRI";;"auto_increment"
+"gi_debugger_entry_id";"bigint(20)";"NO";"MUL";;""
+"debug_level";"varchar(50)";"NO";"MUL";;""
+"subject";"varchar(255)";"NO";"";;""
+"content";"longblob";"YES";"";;""
+"create_time";"datetime";"NO";"MUL";;""

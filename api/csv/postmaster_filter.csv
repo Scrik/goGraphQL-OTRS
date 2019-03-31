@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"f_name";"varchar(200)";"NO";"MUL";;""
+"f_stop";"smallint(6)";"YES";"";;""
+"f_type";"varchar(20)";"NO";"";;""
+"f_key";"varchar(200)";"NO";"";;""
+"f_value";"varchar(200)";"NO";"";;""
+"f_not";"smallint(6)";"YES";"";;""

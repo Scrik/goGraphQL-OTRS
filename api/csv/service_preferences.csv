@@ -1,0 +1,4 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"service_id";"int(11)";"NO";"MUL";;""
+"preferences_key";"varchar(150)";"NO";"";;""
+"preferences_value";"varchar(250)";"YES";"";;""

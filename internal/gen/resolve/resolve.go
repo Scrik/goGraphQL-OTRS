@@ -82,6 +82,15 @@ func (R *Resolver%s) %s() *string {
 	`, Title, name, "%d", name)
 	}
 
+	if typ == "*decimal(10,2)" {
+		return fmt.Fprintf(r, `
+func (R *Resolver%s) %s() *string {
+	str := fmt.Sprintf("%d", R.s.%s)
+	return &str
+}
+	`, Title, name, "%d", name)
+	}
+
 	if typ == "int64" {
 		return fmt.Fprintf(r, `
 func (R Resolver%s) %s() string {

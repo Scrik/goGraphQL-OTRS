@@ -1,0 +1,4 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"virtual_fs_id";"bigint(20)";"NO";"MUL";;""
+"preferences_key";"varchar(150)";"NO";"MUL";;""
+"preferences_value";"text";"YES";"";;""

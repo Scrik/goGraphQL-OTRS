@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"login";"varchar(200)";"NO";"MUL";;""
+"profile_name";"varchar(200)";"NO";"MUL";;""
+"profile_type";"varchar(30)";"NO";"";;""
+"profile_key";"varchar(200)";"NO";"";;""
+"profile_value";"varchar(200)";"YES";"";;""

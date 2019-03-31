@@ -1,0 +1,8 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"webservice_id";"int(11)";"NO";"PRI";;""
+"object_type";"varchar(30)";"NO";"PRI";;""
+"object_id";"bigint(20)";"NO";"PRI";;""
+"lock_state";"varchar(30)";"NO";"";;""
+"lock_state_counter";"int(11)";"NO";"";;""
+"create_time";"datetime";"NO";"";;""
+"change_time";"datetime";"NO";"";;""

@@ -1,0 +1,5 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"xml_type";"varchar(200)";"NO";"";;""
+"xml_key";"varchar(250)";"NO";"MUL";;""
+"xml_content_key";"varchar(250)";"NO";"MUL";;""
+"xml_content_value";"mediumtext";"YES";"";;""

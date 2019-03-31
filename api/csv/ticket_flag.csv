@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"ticket_id";"bigint(20)";"NO";"PRI";;""
+"ticket_key";"varchar(50)";"NO";"PRI";;""
+"ticket_value";"varchar(50)";"YES";"";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"PRI";;""

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 
@@ -24,7 +25,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	res, err := os.Create("../" + Name + "_type.go")
+	p := path.Join("../" + Name + "_type.go")
+	_, err = os.Stat(p)
+	if !os.IsNotExist(err) {
+		err = os.Remove(p)
+	}
+
+	res, err := os.Create(p)
 	if err != nil {
 		panic(err)
 	}
@@ -44,8 +51,12 @@ import "time"
 	// GenResolve
 	rd = bytes.NewReader(fields)
 	r = bufio.NewReader(rd)
-
-	res, err = os.Create("../" + Name + "_resolv.go")
+	p = path.Join("../" + Name + "_resolv.go")
+	_, err = os.Stat(p)
+	if !os.IsNotExist(err) {
+		err = os.Remove(p)
+	}
+	res, err = os.Create(p)
 	if err != nil {
 		panic(err)
 	}

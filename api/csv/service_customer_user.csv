@@ -1,0 +1,5 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"customer_user_login";"varchar(200)";"NO";"MUL";;""
+"service_id";"int(11)";"NO";"MUL";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"MUL";;""

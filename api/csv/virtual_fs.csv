@@ -1,0 +1,6 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"bigint(20)";"NO";"PRI";;"auto_increment"
+"filename";"text";"NO";"MUL";;""
+"backend";"varchar(60)";"NO";"MUL";;""
+"backend_key";"varchar(160)";"NO";"";;""
+"create_time";"datetime";"NO";"";;""

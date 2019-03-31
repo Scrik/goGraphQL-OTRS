@@ -1,0 +1,4 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"notification_id";"int(11)";"NO";"MUL";;""
+"event_key";"varchar(200)";"NO";"MUL";;""
+"event_value";"varchar(200)";"NO";"MUL";;""

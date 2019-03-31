@@ -2,18 +2,20 @@
 
 function generate(){
     (
-        cd api/$1;
-        go run  ../../internal/gen/main.go -csv $1.csv
-        gofmt -w *.go
+        ../../.bin/gen -csv $1
     )
 }
-
-generate ticket
-generate article
-generate article_attachment
-generate customer_company
-
 (
-    cd api/
+    cd internal/gen/
+    go build
+)
+mv internal/gen/gen .bin/
+(
+    cd api/csv
+    for file in *.csv
+    do
+        generate $file
+    done
+    cd ..
     gofmt -w *.go
 )

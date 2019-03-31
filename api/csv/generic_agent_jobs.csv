@@ -1,0 +1,4 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"job_name";"varchar(200)";"NO";"MUL";;""
+"job_key";"varchar(200)";"NO";"";;""
+"job_value";"varchar(200)";"YES";"";;""

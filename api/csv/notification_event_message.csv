@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"int(11)";"NO";"PRI";;"auto_increment"
+"notification_id";"int(11)";"NO";"MUL";;""
+"subject";"varchar(200)";"NO";"";;""
+"text";"text";"NO";"";;""
+"content_type";"varchar(250)";"NO";"";;""
+"language";"varchar(60)";"NO";"MUL";;""

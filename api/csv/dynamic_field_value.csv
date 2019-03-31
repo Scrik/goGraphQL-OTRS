@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"int(11)";"NO";"PRI";;"auto_increment"
+"field_id";"int(11)";"NO";"MUL";;""
+"object_id";"bigint(20)";"NO";"MUL";;""
+"value_text";"text";"YES";"";;""
+"value_date";"datetime";"YES";"";;""
+"value_int";"bigint(20)";"YES";"";;""

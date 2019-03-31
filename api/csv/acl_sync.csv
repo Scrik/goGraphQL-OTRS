@@ -1,0 +1,5 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"acl_id";"varchar(200)";"NO";"";;""
+"sync_state";"varchar(30)";"NO";"";;""
+"create_time";"datetime";"NO";"";;""
+"change_time";"datetime";"NO";"";;""

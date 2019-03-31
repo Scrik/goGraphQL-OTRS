@@ -1,7 +1,5 @@
 package api
 
-import "fmt"
-
 type ResolverArticle struct {
 	s TypeArticle
 }

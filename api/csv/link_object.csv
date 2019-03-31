@@ -1,0 +1,3 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"smallint(6)";"NO";"PRI";;"auto_increment"
+"name";"varchar(100)";"NO";"UNI";;""

@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"id";"bigint(20)";"NO";"PRI";;"auto_increment"
+"communication_id";"varchar(32)";"NO";"UNI";;""
+"communication_type";"varchar(50)";"NO";"";;""
+"remote_ip";"varchar(50)";"YES";"";;""
+"webservice_id";"int(11)";"NO";"MUL";;""
+"create_time";"datetime";"NO";"MUL";;""

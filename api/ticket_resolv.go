@@ -1,7 +1,5 @@
 package api
 
-import "fmt"
-
 type ResolverTicket struct {
 	s TypeTicket
 }

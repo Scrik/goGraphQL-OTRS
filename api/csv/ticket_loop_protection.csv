@@ -1,0 +1,3 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"sent_to";"varchar(250)";"NO";"MUL";;""
+"sent_date";"varchar(150)";"NO";"MUL";;""

@@ -1,0 +1,7 @@
+"Field";"Type";"Null";"Key";"Default";"Extra"
+"data_key";"varchar(160)";"NO";"PRI";;""
+"data_value";"longblob";"YES";"";;""
+"create_time";"datetime";"NO";"";;""
+"create_by";"int(11)";"NO";"MUL";;""
+"change_time";"datetime";"NO";"";;""
+"change_by";"int(11)";"NO";"MUL";;""

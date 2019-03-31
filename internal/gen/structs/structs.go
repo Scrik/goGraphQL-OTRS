@@ -33,6 +33,9 @@ func GenStruct(name string, res io.Writer, r *bufio.Reader) {
 
 // ParseType ParseType
 func ParseType(t string) string {
+	if strings.HasPrefix(t, "decimal") {
+		return "string"
+	}
 	if strings.HasPrefix(t, "varchar") {
 		return "string"
 	}
